@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace TomatoPHP\FilamentWallet\Filament\Resources;
 
 use BackedEnum;
 use TomatoPHP\FilamentWallet\Filament\Resources\TransactionResource\Pages;
