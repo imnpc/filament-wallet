@@ -21,7 +21,7 @@ you can get more detials about how to use this package in [Bavix Wallet](https:/
 ## Installation
 
 ```bash
-composer require tomatophp/filament-wallet
+composer require imnpc/filament-wallet
 ```
 after install your package please run this command
 
