@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use BackedEnum;
 use TomatoPHP\FilamentWallet\Filament\Resources\TransactionResource\Pages;
 use TomatoPHP\FilamentWallet\Filament\Resources\TransactionResource\RelationManagers;
 use TomatoPHP\FilamentWallet\Models\Transaction;
@@ -16,7 +17,7 @@ class TransactionResource extends Resource
 {
     protected static ?string $model = Transaction::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-banknotes';
 
     protected static ?int $navigationSort = 3;
 

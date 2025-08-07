@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources;
 
+
+use BackedEnum;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Utilities\Get;
@@ -22,7 +24,7 @@ class WalletResource extends Resource
 {
     protected static ?string $model = Wallet::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-wallet';
+    protected static string | BackedEnum | null $navigationIcon = 'heroicon-o-wallet';
 
     protected static ?int $navigationSort = 1;
 
