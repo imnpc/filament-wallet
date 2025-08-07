@@ -1,18 +1,17 @@
 <?php
 
-namespace TomatoPHP\FilamentWallet\Filament\Resources;
+namespace App\Filament\Resources;
 
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Notifications\Notification;
 use TomatoPHP\FilamentWallet\Filament\Actions\WalletAction;
 use TomatoPHP\FilamentWallet\Filament\Resources\WalletResource\Pages;
 use TomatoPHP\FilamentWallet\Filament\Resources\WalletResource\RelationManagers;
 use TomatoPHP\FilamentWallet\Models\Wallet;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -48,42 +47,42 @@ class WalletResource extends Resource
     }
 
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
-                TextInput::make('balance')
-                    ->columnSpan(2)
-                    ->disabled()
-                    ->label(trans('filament-wallet::messages.wallets.columns.balance'))
-                    ->numeric()
-                    ->live()
-                    ->required(),
-                Select::make('type')
-                    ->columnSpan(2)
-                    ->searchable()
-                    ->default('credit')
-                    ->options([
-                        'credit' => trans('filament-wallet::messages.wallets.columns.credit'),
-                        'debit' => trans('filament-wallet::messages.wallets.columns.debit')
-                    ])
-                    ->label(trans('filament-wallet::messages.wallets.columns.type'))
-                    ->required()
-                    ->live(),
-                TextInput::make('amount')
-                    ->columnSpan(2)
-                    ->label(trans('filament-wallet::messages.wallets.columns.amount'))
-                    ->numeric()
-                    ->required()
-                    ->live()
-                    ->afterStateUpdated(function($record, $state, Set $set, Get $get){
-                        if($get('type') == 'debit'){
-                            $set('balance', $record->balanceFloatNum - $state);
-                        }
-                        else {
-                            $set('balance', $record->balanceFloatNum + $state);
-                        }
-                    })
-            ]);
+        return $schema->schema([
+            TextInput::make('balance')
+                ->columnSpan(2)
+                ->disabled()
+                ->label(trans('filament-wallet::messages.wallets.columns.balance'))
+                ->numeric()
+                ->live()
+                ->required(),
+            Select::make('type')
+                ->columnSpan(2)
+                ->searchable()
+                ->default('credit')
+                ->options([
+                    'credit' => trans('filament-wallet::messages.wallets.columns.credit'),
+                    'debit' => trans('filament-wallet::messages.wallets.columns.debit')
+                ])
+                ->label(trans('filament-wallet::messages.wallets.columns.type'))
+                ->required()
+                ->live(),
+            TextInput::make('amount')
+                ->columnSpan(2)
+                ->label(trans('filament-wallet::messages.wallets.columns.amount'))
+                ->numeric()
+                ->required()
+                ->live()
+                ->afterStateUpdated(function($record, $state, Set $set, Get $get){
+                    if($get('type') == 'debit'){
+                        $set('balance', $record->balanceFloatNum - $state);
+                    }
+                    else {
+                        $set('balance', $record->balanceFloatNum + $state);
+                    }
+                })
+        ]);
     }
 
     public static function table(Table $table): Table

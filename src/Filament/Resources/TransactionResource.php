@@ -1,12 +1,11 @@
 <?php
 
-namespace TomatoPHP\FilamentWallet\Filament\Resources;
+namespace App\Filament\Resources;
 
 use TomatoPHP\FilamentWallet\Filament\Resources\TransactionResource\Pages;
 use TomatoPHP\FilamentWallet\Filament\Resources\TransactionResource\RelationManagers;
 use TomatoPHP\FilamentWallet\Models\Transaction;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -42,9 +41,9 @@ class TransactionResource extends Resource
         return trans('filament-wallet::messages.transactions.single');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form;
+        return $schema;
     }
 
     public static function table(Table $table): Table
@@ -86,8 +85,8 @@ class TransactionResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters(filament('filament-wallet')->useAccounts ? [
-               Tables\Filters\SelectFilter::make('payable_id')
-                   ->label(trans('filament-wallet::messages.transactions.filters.accounts'))
+                Tables\Filters\SelectFilter::make('payable_id')
+                    ->label(trans('filament-wallet::messages.transactions.filters.accounts'))
                     ->searchable()
                     ->options(fn () => config('filament-accounts.model')::query()->pluck('name', 'id')->toArray())
             ] : [])
