@@ -92,8 +92,8 @@ class TransactionResource extends Resource
                     ->options(fn () => config('filament-accounts.model')::query()->pluck('name', 'id')->toArray())
             ] : [])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                \Filament\Actions\BulkActionGroup::make([
+                    \Filament\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
