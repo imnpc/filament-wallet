@@ -51,7 +51,7 @@
     "require": {
         "php": "^8.2|^8.3|^8.4",
         "tomatophp/console-helpers": "^1.1",
-        "bavix/laravel-wallet": "^10.0|^11.0",
+        "bavix/laravel-wallet": "^10.0|^11.0|^12.0",
         "filament/filament": "^4.0|^5.0"
     },
     "require-dev": {
